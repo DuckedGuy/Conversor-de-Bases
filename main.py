@@ -1,5 +1,12 @@
 basesSuportadas = [2, 3, 8, 10, 16]
 
+def conjuntoRestos(n,div):
+    casasOrdenadas = []
+    while n >= 1:
+        casasOrdenadas.append(n % div)
+        n //= div
+    return casasOrdenadas
+
 def inverterHex(sequencia):
     x = []
     for elemento in sequencia:
@@ -22,14 +29,6 @@ def inverterHex(sequencia):
                 case _: x.append(int(elemento))
     return x
 
-def conjuntoRestos(n,div):
-    casasOrdenadas = []
-    while n >= 1:
-        casasOrdenadas.append(n % div)
-        n //= div
-    
-    return casasOrdenadas
-
 def pegarBase(prompt):
     while True:
         base = 0
@@ -44,7 +43,6 @@ def pegarBase(prompt):
 
 def pegarValor(prompt):
     while True:
-        valor = 0
         try:
             if baseEntrada == basesSuportadas[4]:
                 valor = (input(prompt))
