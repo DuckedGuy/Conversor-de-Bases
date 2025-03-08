@@ -72,7 +72,7 @@ valorEntrada = pegarValor('Valor de entrada: ')
 valorEntradaB = valorEntrada
 
 # Checa se a base é 10 e converte pra ela se não for
-if baseEntrada != basesSuportadas[3]:
+if baseEntrada != basesSuportadas[3]: # base 10
     if type(valorEntrada) != list:
         decOrdem = conjuntoRestos(valorEntrada,10)
     else:
