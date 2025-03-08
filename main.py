@@ -1,11 +1,11 @@
 basesSuportadas = [2, 3, 8, 10, 16]
 
-def tratarHex(hex,num_p_letra):
+def inverterHex(sequencia):
     x = []
-    if num_p_letra == True:
-        for elemento in hex:
-            if elemento < 10: 
-                x.append(elemento)
+    for elemento in sequencia:
+        if isinstance(elemento, int) and elemento < 10: 
+            x.append(elemento)
+        else:
             match elemento:
                 case 10: x.append('A')
                 case 11: x.append('B')
@@ -13,10 +13,6 @@ def tratarHex(hex,num_p_letra):
                 case 13: x.append('D')
                 case 14: x.append('E')
                 case 15: x.append('F')
-                case _: pass
-    else: 
-        for elemento in hex:
-            match elemento:
                 case 'A': x.append(10)
                 case 'B': x.append(11)
                 case 'C': x.append(12)
@@ -26,14 +22,8 @@ def tratarHex(hex,num_p_letra):
                 case _: x.append(int(elemento))
     return x
 
-def conjuntoRestos(n,div,hex):
-    if baseEntrada == basesSuportadas[4] and hex == True:
-        n = tratarHex(n,True)
-        return n
+def conjuntoRestos(n,div):
     casasOrdenadas = []
-    if baseSaida == basesSuportadas[4] and hex == True:
-        casasOrdenadas = tratarHex(casasOrdenadas,True)
-        return n
     while n >= 1:
         casasOrdenadas.append(n % div)
         n //= div
@@ -61,11 +51,11 @@ def pegarValor(prompt):
                 valorChars = []
                 for char in valor:
                     valorChars.append(char.upper())
-                valor = tratarHex(valorChars,False)
+                valor = inverterHex(valorChars)
                 return valor[::-1]
             else:
                 valor = int(input(prompt))
-                valorOrdenado = conjuntoRestos(valor, 10, False)
+                valorOrdenado = conjuntoRestos(valor, 10)
                 i = 0
                 while i < len(valorOrdenado):
                     if valorOrdenado[i] >= baseEntrada:
@@ -86,7 +76,7 @@ valorEntradaB = valorEntrada
 # Checa se a base é 10 e converte pra ela se não for
 if baseEntrada != basesSuportadas[3]:
     if type(valorEntrada) != list:
-        decOrdem = conjuntoRestos(valorEntrada,10,False)
+        decOrdem = conjuntoRestos(valorEntrada,10)
     else:
         decOrdem = valorEntrada
     valorDec = 0
@@ -97,9 +87,9 @@ if baseEntrada != basesSuportadas[3]:
     valorEntrada = valorDec
 
 # Bota todos os restos em um conjunto e inverte ele pra printar
-valorSaida = conjuntoRestos(valorEntrada,baseSaida,False)
+valorSaida = conjuntoRestos(valorEntrada,baseSaida)
 if baseSaida == basesSuportadas[4]:
-    valorSaida = tratarHex(valorSaida,True)
+    valorSaida = inverterHex(valorSaida)
 valorSaida = valorSaida[::-1]
 
 saidaFormatada = ""
