@@ -65,11 +65,14 @@ def pegarValor(prompt):
 
 # Pega os valores iniciais e a base da saída
 print('-==--====Conversor de bases===--==-','\nBases suportadas:',basesSuportadas,'\n')
-# pegar os 3
 baseSaida = pegarBase('Base de saída: ')
 baseEntrada = pegarBase('Base de entrada: ')
 valorEntrada = pegarValor('Valor de entrada: ')
+
+# Garante que o número na saída volta pra hexadecimal se ele entrou como decimal
 valorEntradaB = valorEntrada
+if baseEntrada == basesSuportadas[4]: # base 16
+    valorEntradaB = inverterHex(valorEntradaB[::-1])
 
 # Checa se a base é 10 e converte pra ela se não for
 if baseEntrada != basesSuportadas[3]: # base 10
