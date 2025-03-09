@@ -70,9 +70,13 @@ baseEntrada = pegarBase('Base de entrada: ')
 valorEntrada = pegarValor('Valor de entrada: ')
 
 # Garante que o número na saída volta pra hexadecimal se ele entrou como decimal
-valorEntradaB = valorEntrada
+entradaFormatada = ""
 if baseEntrada == basesSuportadas[4]: # base 16
-    valorEntradaB = inverterHex(valorEntradaB[::-1])
+    valorEntradaB = inverterHex(valorEntrada[::-1])
+    for i in valorEntradaB:
+        entradaFormatada += str(i) 
+else:
+    entradaFormatada = valorEntrada
 
 # Checa se a base é 10 e converte pra ela se não for
 if baseEntrada != basesSuportadas[3]: # base 10
@@ -93,8 +97,11 @@ if baseSaida == basesSuportadas[4]:
     valorSaida = inverterHex(valorSaida)
 valorSaida = valorSaida[::-1]
 
+# Bota a saída numa string bonitinha e se a base for 2 ou 16 inclui um espaço a cada 4 caracteres 
 saidaFormatada = ""
 for i in valorSaida:
-    saidaFormatada += str(i) 
-print('\nO número',valorEntradaB,'da base',baseEntrada,'na base',baseSaida,'é:',saidaFormatada)        
+    saidaFormatada += str(i)
+if baseSaida == basesSuportadas [0] or basesSuportadas[4]: # base 2 ou 16
+    saidaFormatada= " ".join(saidaFormatada[i : i + 4] for i in range(0, len(saidaFormatada), 4))
+print('\nO número',entradaFormatada,'da base',baseEntrada,'na base',baseSaida,'é:',saidaFormatada)        
 input('\nAperte enter para sair... ')
