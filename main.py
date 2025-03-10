@@ -101,7 +101,7 @@ valorSaida = valorSaida[::-1]
 saidaFormatada = ""
 for i in valorSaida:
     saidaFormatada += str(i)
-if baseSaida == basesSuportadas [0] or basesSuportadas[4]: # base 2 ou 16
+if baseSaida == basesSuportadas [0] or baseSaida == basesSuportadas[4]: # base 2 ou 16
     saidaFormatada= " ".join(saidaFormatada[i : i + 4] for i in range(0, len(saidaFormatada), 4))
 print('\nO número',entradaFormatada,'da base',baseEntrada,'na base',baseSaida,'é:',saidaFormatada)        
 input('\nAperte enter para sair... ')
