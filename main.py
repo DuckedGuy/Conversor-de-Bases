@@ -30,22 +30,23 @@ def pegarBase(prompt):
 def pegarValor(prompt):
     while True:
         try:
-            if baseEntrada == basesSuportadas[4]:
-                valor = (input(prompt))
-                valorChars = []
-                for char in valor:
-                    valorChars.append(char.upper())
-                valor = inverterHex(valorChars)
-                return valor[::-1]
-            else:
-                valor = int(input(prompt))
+            valor = (input(prompt))
+            if baseEntrada != basesSuportadas[4]:
+                valor = int(valor)
                 valorOrdenado = conjuntoRestos(valor, 10)
                 i = 0
                 while i < len(valorOrdenado):
                     if valorOrdenado[i] >= baseEntrada:
                         raise ValueError
                     i += 1
-            return valor
+                return valor
+            valorChars = []
+            for char in valor:
+                if char.upper() not in dictHex:
+                    raise ValueError
+                valorChars.append(char.upper())
+            valor = inverterHex(valorChars)
+            return valor[::-1]
         except ValueError:
             print('Insira um valor válido.')
 
