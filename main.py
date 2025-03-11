@@ -33,6 +33,8 @@ def pegarValor(prompt):
             valor = (input(prompt))
             if baseEntrada != basesSuportadas[4]:
                 valor = int(valor)
+                if valor < 1:
+                    raise ValueError
                 valorOrdenado = conjuntoRestos(valor, 10)
                 i = 0
                 while i < len(valorOrdenado):
