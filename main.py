@@ -51,7 +51,8 @@ def pegarValor(prompt):
             print('Insira um valor válido.')
 
 # Pega os valores iniciais e a base da saída
-print('-==--====Conversor de bases===--==-','\nBases suportadas:',basesSuportadas,'\n')
+print('-==--====Conversor de bases===--==-','\nBases suportadas:',basesSuportadas,)
+print('Insira a base de saída, a base de entrada e um valor positivo na base de entrada escolhida.\n')
 baseSaida = pegarBase('Base de saída: ')
 baseEntrada = pegarBase('Base de entrada: ')
 valorEntrada = pegarValor('Valor de entrada: ')
