@@ -10,23 +10,20 @@ def conjuntoRestos(n,div):
 def inverterHex(sequencia):
     x = []
     for elemento in sequencia:
-        if isinstance(elemento, int) and elemento < 10: 
-            x.append(elemento)
-        else:
-            match elemento:
-                case 10: x.append('A')
-                case 11: x.append('B')
-                case 12: x.append('C')
-                case 13: x.append('D')
-                case 14: x.append('E')
-                case 15: x.append('F')
-                case 'A': x.append(10)
-                case 'B': x.append(11)
-                case 'C': x.append(12)
-                case 'D': x.append(13)
-                case 'E': x.append(14)
-                case 'F': x.append(15)
-                case _: x.append(int(elemento))
+        match elemento:
+            case 10: x.append('A')
+            case 11: x.append('B')
+            case 12: x.append('C')
+            case 13: x.append('D')
+            case 14: x.append('E')
+            case 15: x.append('F')
+            case 'A': x.append(10)
+            case 'B': x.append(11)
+            case 'C': x.append(12)
+            case 'D': x.append(13)
+            case 'E': x.append(14)
+            case 'F': x.append(15)
+            case _: x.append(int(elemento))
     return x
 
 def pegarBase(prompt):
