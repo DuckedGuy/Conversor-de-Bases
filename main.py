@@ -1,4 +1,5 @@
 basesSuportadas = [2, 3, 8, 10, 16]
+dictHex = { 10 : 'A', 11 : 'B', 12 : 'C', 13 : 'D', 14 : 'E', 15 : 'F', 'A' : 10, 'B' : 11, 'C' : 12, 'D' : 13, 'E' : 14, 'F' : 15 }
 
 def conjuntoRestos(n,div):
     casasOrdenadas = []
@@ -10,31 +11,19 @@ def conjuntoRestos(n,div):
 def inverterHex(sequencia):
     x = []
     for elemento in sequencia:
-        match elemento:
-            case 10: x.append('A')
-            case 11: x.append('B')
-            case 12: x.append('C')
-            case 13: x.append('D')
-            case 14: x.append('E')
-            case 15: x.append('F')
-            case 'A': x.append(10)
-            case 'B': x.append(11)
-            case 'C': x.append(12)
-            case 'D': x.append(13)
-            case 'E': x.append(14)
-            case 'F': x.append(15)
-            case _: x.append(int(elemento))
+        if elemento not in dictHex:
+            x.append(elemento)
+            continue
+        x.append(dictHex[elemento])
     return x
 
 def pegarBase(prompt):
     while True:
-        base = 0
         try:
             base = int(input(prompt))
             if base not in basesSuportadas:
-                print('Insira uma base válida.')
-            else:
-                return int(base)
+                raise ValueError
+            return int(base)
         except ValueError:
             print('Insira uma base válida.')
 
