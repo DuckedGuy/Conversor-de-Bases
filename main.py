@@ -12,7 +12,7 @@ def inverterHex(sequencia):
     x = []
     for elemento in sequencia:
         if elemento not in dictHex:
-            x.append(elemento)
+            x.append(int(elemento))
             continue
         x.append(dictHex[elemento])
     return x
@@ -31,7 +31,7 @@ def pegarValor(prompt):
     while True:
         try:
             valor = (input(prompt))
-            if baseEntrada != basesSuportadas[4]:
+            if baseEntrada != basesSuportadas[4]: # Qualquer base que não a 16
                 valor = int(valor)
                 if valor < 1:
                     raise ValueError
@@ -42,13 +42,15 @@ def pegarValor(prompt):
                         raise ValueError
                     i += 1
                 return valor
+            # Base 16
             valorChars = []
             for char in valor:
-                if char.upper() not in dictHex:
+                if char.upper() not in dictHex and char.isnumeric() == False:
                     raise ValueError
                 valorChars.append(char.upper())
             valor = inverterHex(valorChars)
             return valor[::-1]
+        
         except ValueError:
             print('Insira um valor válido.')
 
@@ -87,11 +89,10 @@ if baseSaida == basesSuportadas[4]:
     valorSaida = inverterHex(valorSaida)
 valorSaida = valorSaida[::-1]
 
-# Bota a saída numa string bonitinha e se a base for 2 ou 16 inclui um espaço a cada 4 caracteres 
+# Bota a saída numa string pra não imprimir como se fosse um array 
 saidaFormatada = ""
 for i in valorSaida:
     saidaFormatada += str(i)
-if baseSaida == basesSuportadas [0] or baseSaida == basesSuportadas[4]: # base 2 ou 16
-    saidaFormatada= " ".join(saidaFormatada[i : i + 4] for i in range(0, len(saidaFormatada), 4))
-print('\nO número',entradaFormatada,'da base',baseEntrada,'na base',baseSaida,'é:',saidaFormatada)        
+
+print('\nO número',entradaFormatada,'da base',baseEntrada,'na base',baseSaida,'é:', saidaFormatada)        
 input('\nAperte enter para sair... ')
