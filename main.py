@@ -1,3 +1,9 @@
+import sys
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("-c")
+args, unknown = parser.parse_known_args()
+
 basesSuportadas = [2, 3, 8, 10, 16]
 dictHex = { 10 : 'A', 11 : 'B', 12 : 'C', 13 : 'D', 14 : 'E', 15 : 'F', 'A' : 10, 'B' : 11, 'C' : 12, 'D' : 13, 'E' : 14, 'F' : 15 }
 
@@ -17,10 +23,16 @@ def inverterHex(sequencia):
         x.append(dictHex[elemento])
     return x
 
-def pegarBase(prompt):
+def pegarBase(prompt, saida):
     while True:
         try:
-            base = int(input(prompt))
+            if args.c:
+                if saida:
+                    base = int(sys.argv[2])
+                else:
+                    base = int(sys.argv[3])
+            else:
+                base = int(input(prompt))
             if base not in basesSuportadas:
                 raise ValueError
             return int(base)
@@ -30,7 +42,10 @@ def pegarBase(prompt):
 def pegarValor(prompt):
     while True:
         try:
-            valor = (input(prompt))
+            if args.c:
+                valor = sys.argv[4]
+            else:
+                valor = (input(prompt))
             if baseEntrada != basesSuportadas[4]: # Qualquer base que não a 16
                 valor = int(valor)
                 if valor < 1:
@@ -57,8 +72,8 @@ def pegarValor(prompt):
 # Pega os valores iniciais e a base da saída
 print('-==--====Conversor de bases===--==-','\nBases suportadas:',basesSuportadas,)
 print('Insira a base de saída, a base de entrada e um valor positivo na base de entrada escolhida.\n')
-baseSaida = pegarBase('Base de saída: ')
-baseEntrada = pegarBase('Base de entrada: ')
+baseSaida = pegarBase('Base de saída: ', True)
+baseEntrada = pegarBase('Base de entrada: ', False)
 valorEntrada = pegarValor('Valor de entrada: ')
 
 # Garante que o número na saída volta pra hexadecimal se ele entrou como decimal
